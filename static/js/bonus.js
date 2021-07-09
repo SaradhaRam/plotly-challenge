@@ -23,7 +23,7 @@
      d3.json("data/samples.json").then((data => {
 
 
-         // ********** Dropdown Menu ************// 
+         // ********** Populate Dropdown Menu ************// 
 
          //  Iterate over each name in the names array to populate dropdowns with IDs
          data.names.forEach((name => {
@@ -67,7 +67,7 @@
 
          // get the wash frequency for gauge chart 
          var wfreq = metaData.wfreq;
-         //
+
          var newList = demographicInfo.append("ul");
          newList.attr("class", "list-group list-group-flush");
 
@@ -78,15 +78,16 @@
              var listItem = newList.append("li");
 
              // change the class attributes of the list item for styling
-             listItem.attr("class", "list-group-item ");
+             listItem.attr("class", "list-group-item display-text bg-transparent text-dark");
 
              // add the key value pair from the metadata to the demographics list
              listItem.text(`${key}: ${value}`);
 
          }); // end of forEach loop
 
-         var wfreqValues = data.metadata.map(d => d.wfreq)
-         console.log(`Washing Freq: ${wfreqValues}`)
+
+         var wfreqValue = data.metadata.map(d => d.wfreq)
+         console.log(`Washing Freq: ${wfreqValue}`)
 
          //********** BarChart **********//
 
@@ -171,7 +172,7 @@
          // bubble chart
          Plotly.newPlot("bubble", data1, layout);
 
-         //************* Gauge Chart ***********/
+         //********** Gauge Chart **********/
 
          // if wfreq has a null value, make it zero for calculating pointer later
          if (wfreq == null) {
@@ -221,6 +222,7 @@
              font: { color: "darkblue", family: "Arial" }
          };
          Plotly.newPlot('gauge', data2, layout);
+
      });
 
  };
